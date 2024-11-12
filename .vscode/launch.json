@@ -1,0 +1,25 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/test_sdl",
+            "args": [],
+            "cwd": "${workspaceFolder}",
+            "preLaunchTask": "build",
+            "stopAtEntry": false,
+            "env": {},
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for lldb",
+                    "ignoreFailures": true,
+                    "text": "settings set target.language c++"
+                }
+            ]
+        }
+    ]
+}

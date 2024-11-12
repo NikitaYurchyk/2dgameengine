@@ -1,0 +1,26 @@
+{
+    "version": 4,
+    "configurations": [
+        {
+            "name": "Mac",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/opt/homebrew/include/SDL2",
+                "/opt/homebrew/Cellar/sdl2/2.30.7/include",
+                "/opt/homebrew/Cellar/sdl2_image/2.8.2_2/include"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/clang++",
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "macos-clang-x64",
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/**",
+                    "/opt/homebrew/include/SDL2"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        }
+    ]
+}
