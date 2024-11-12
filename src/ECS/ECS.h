@@ -2,6 +2,9 @@
 #define ECS_H
 #include <bitset>
 #include <vector>
+#include <unordered_map>
+#include <typeindex>
+
 const unsigned int MAX_COMPONENTS = 32;
 
 typedef std::bitset<MAX_COMPONENTS> Signature;
@@ -60,11 +63,64 @@ void System::RequiredComponent(){
     componetSignature.set(componentId);
 }
 
-
-
-class Registery{
-
+class IPool{
+    public:
+        virtual ~IPool() {}
 };
+
+template <typename T>
+class Pool: IPool{
+    private:
+        std::vector<T> data;
+
+    public:
+        Pool(size_t size = 1000){
+            data.resize(size);
+        }
+        ~Pool() = default;
+        bool isEmpty(){
+            return data.empty();
+        } 
+        int GetSize(){
+            return data.size();
+        }
+        
+        void Resize(int n){
+            data.resize(n);
+        }
+
+        void Clear(){
+            data.clear();
+        }
+        
+        void Add(T obj){
+            data.push_back(obj);
+        }
+
+        void Set(int index, T obj){
+            data.at(index) = obj;
+        }
+
+        T& Get(int index){
+            return static_cast<T&>(data[index]);
+        }
+
+        T& operator [](unsigned int index){
+            return static_cast<T&>(data[index]);
+        }
+};
+class Registery{
+    private:
+        int numEntities = 0;
+        //pool certain component data
+        std::vector<IPool*> componentPool;
+        std::vector<Signature> entityComponentSignature;
+        std::unordered_map<std::type_index, System*> systems;
+    public:
+        Registery() = default;
+        ~Registery() = default;
+};
+
 
 
 #endif
